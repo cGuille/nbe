@@ -1,0 +1,10 @@
+{
+  "name": "nbe",
+  "version": "0.0.0",
+  "description": "Node Browser Engine",
+  "author": "cGuille",
+  "license": "MIT",
+  "dependencies": {
+    "lodash": "^2.4.1"
+  }
+}

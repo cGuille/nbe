@@ -1,0 +1,36 @@
+#!/usr/bin/env node
+
+'use strict';
+
+var fs = require('fs');
+var HtmlParser = require('../lib/parser/html');
+
+var htmlFilePath = process.argv[2];
+
+if (!htmlFilePath) {
+    console.error("Usage: " + process.argv[1] + " [html file path]");
+    process.exit(1);
+}
+
+if (!fs.existsSync(htmlFilePath)) {
+    console.error("The file '" + htmlFilePath + "' does not exist.");
+    process.exit(1);
+}
+
+try {
+    var fileBuffer = fs.readFileSync(htmlFilePath);
+} catch (error) {
+    console.error(error.message);
+    process.exit(1);
+}
+
+var parser = new HtmlParser(fileBuffer.toString());
+
+try {
+    var htmlDocument = parser.parse();
+} catch (error) {
+    console.error(error.constructor.name + ': ' + error.message);
+    process.exit(1);
+}
+
+htmlDocument.printTree();
