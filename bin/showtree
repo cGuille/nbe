@@ -25,12 +25,6 @@ try {
 }
 
 var parser = new HtmlParser(fileBuffer.toString());
-
-try {
-    var htmlDocument = parser.parse();
-} catch (error) {
-    console.error(error.constructor.name + ': ' + error.message);
-    process.exit(1);
-}
+var htmlDocument = parser.parse();
 
 htmlDocument.printTree();

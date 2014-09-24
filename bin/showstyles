@@ -26,11 +26,6 @@ try {
 }
 
 var parser = new HtmlParser(fileBuffer.toString());
+var htmlDocument = parser.parse();
 
-try {
-    var htmlDocument = parser.parse();
-    console.log(inspect(htmlDocument.stylesheets));
-} catch (error) {
-    console.error(error.constructor.name + ': ' + error.message);
-    process.exit(1);
-}
+console.log(inspect(htmlDocument.stylesheets));
