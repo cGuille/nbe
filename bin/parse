@@ -3,7 +3,6 @@
 'use strict';
 
 var fs = require('fs');
-var inspect = require('util').inspect;
 var HtmlParser = require('../lib/parser/html');
 
 var htmlFilePath = process.argv[2];
@@ -28,4 +27,8 @@ try {
 var parser = new HtmlParser(fileBuffer.toString());
 var htmlDocument = parser.parse();
 
-console.log(inspect(htmlDocument.stylesheets));
+htmlDocument.printTree();
+
+console.log('\n' + htmlDocument.stylesheets.map(function (stylesheet) {
+    return 'Stylesheet:\n' + stylesheet.toString() + '\n';
+}).join('\n'));
